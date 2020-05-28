@@ -12,5 +12,5 @@ docker push callipygious/multi-server:$SHA
 kubectl apply -f k8s
 
 kubectl set image deployments/server-deployment server=callipygious/multi-server:$SHA
-kubectl set image deployments/client-deployment server=callipygious/multi-client:$SHA
-kubectl set image deployments/worker-deployment server=callipygious/multi-worker:$SHA
+kubectl set image deployments/client-deployment client=callipygious/multi-client:$SHA
+kubectl set image deployments/worker-deployment worker=callipygious/multi-worker:$SHA
