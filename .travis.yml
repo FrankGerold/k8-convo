@@ -13,7 +13,7 @@ before_install:
 - gcloud components update kubectl
 - gcloud auth activate-service-account --key-file service-account.json
 - gcloud config set project k8-convo
-- gcloud config set compute3/zone us-east1-b
+- gcloud config set compute/zone us-east1-b
 - gcloud container clusters get-credentials convo-cluster
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - docker build -t callipygious/react-test-k8 -f ./client/Dockerfile.dev ./client
