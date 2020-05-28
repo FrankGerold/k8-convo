@@ -1,0 +1,26 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_a4ea7482f540_key -iv $encrypted_a4ea7482f540_iv -in service-account.json.enc -out service-account.json -d
+  - curl https://sdk.cloud.google.com | bash > /dev/null;
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  - gcloud components update kubectl
+  - gcloud auth activate-service-account --key-file service-account.json
+  - gcloud config set project k8-convo
+  - gcloud config set compute3/zone us-east1-b
+  - gcloud container clusters get-credentials convo-cluster
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t callipygious/react-test-k8 -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true callipygious/react-test-k8 yarn test
+
+deploy:
+  provider: script
+  script: bash ./deploy.sh
+  on:
+    branch: master
