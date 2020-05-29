@@ -11,9 +11,9 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <header>
-            <img src={logo} alt="logo" />
-            <h1>Multi-Container Fibonacci Calculator: K8</h1>
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1>Multi-Container Fibonacci Calculator <code>Kubernetes Deployment</code></h1>
 
             <Link to="/">Home</Link>
             <Link to="/otherpage">Other Page</Link>
