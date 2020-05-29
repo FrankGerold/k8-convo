@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metaData:
+  name: k8-convo-tls
+spec:
+  secretName: k8-convo-ip
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: 34.73.2.39
+  dnsNames:
+    - 34.73.2.39
+  acme:
+    config:
+      - http01:
+          ingressClas: nginx
+        domains:
+          - 34.73.2.39
