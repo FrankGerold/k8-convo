@@ -13,6 +13,6 @@ spec:
   acme:
     config:
       - http01:
-          ingressClas: nginx
+          ingressClass: nginx
         domains:
           - 34.73.2.39
